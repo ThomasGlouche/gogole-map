@@ -1,12 +1,10 @@
-version: '3.7'
 services:
   bdd:
     container_name: gogole-map-bdd
     build: ./bdd
+    restart: always #added
     networks:
       - back
-    ports:
-    - 3306:3306
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       interval: 15s
@@ -16,11 +14,12 @@ services:
   back:
     container_name: gogole-map-back
     build: ./server
+    restart: always #added
     networks:
       - front
       - back
     ports:  # use ports instead of expose to map ports
-    - 8080:8080
+     - "8080:8080"
     depends_on:
       bdd:
         condition: service_healthy
@@ -32,7 +31,7 @@ services:
     networks:
       - front
     ports:
-      - 3000:3000
+     - "3000:3000"
 
 networks:
   front:

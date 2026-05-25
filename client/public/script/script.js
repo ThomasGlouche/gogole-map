@@ -1,3 +1,4 @@
+const API_URL = "/api/cities";
 const coordCoinHautGauche = [51.39882174293374, -5.332754245480544];
 const coordCoinBasDroit = [41.70469610254452, 8.529800125775425];
 var carteWidth = document.getElementById('map-img').offsetWidth;
@@ -32,7 +33,7 @@ document.getElementById('closeInfoBox').addEventListener('click', function() {
 
 if (regionFilter) {
     $.ajax({
-        url: 'http://localhost:3000/api/regions',
+        url: API_URL + '/regions',
         type: 'GET',
         success: function(data) {
             var regions = data;
@@ -148,7 +149,7 @@ function placeMarker(event) {
  */
 function showCities(latitude, longitude, nb, radius, population, region) {
     $.ajax({
-        url: 'http://localhost:3000/api/nearest?latitude=' + latitude + '&longitude=' + longitude + '&nb=' + nb + '&radius=' + radius + '&population=' + population + '&region=' + region,
+        url: API_URL + '/nearest?latitude=' + latitude + '&longitude=' + longitude + '&nb=' + nb + '&radius=' + radius + '&population=' + population + '&region=' + region,
         type: 'GET',
         success: function(data) {
             removeCities();

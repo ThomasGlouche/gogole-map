@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*") //ajouter le  25/02
 @RestController
 @RequestMapping("/api/cities")
 public class CityController {
