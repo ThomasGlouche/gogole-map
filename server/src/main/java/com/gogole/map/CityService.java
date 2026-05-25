@@ -24,8 +24,14 @@ public class CityService {
 	public CityService() {
 
 		try {
-			//DatabaseQuery databaseQuery = new DatabaseQuery("jdbc:mysql://gogole-map-bdd:3306/gogolemap", "root", "root");
-			DatabaseQuery databaseQuery = new DatabaseQuery("jdbc:mysql://bdd:3306/gogolemap", "root", "root");
+            String dbUrl = System.getenv("DB_URL");
+            String dbUser = System.getenv("DB_USER");
+            String dbPassword = System.getenv("DB_PASSWORD");
+			DatabaseQuery databaseQuery = new DatabaseQuery(
+                dbUrl,
+                dbUser,
+                dbPassword
+            );
 			this.cities = loadCitiesFromJsonFile();
 			this.cities = databaseQuery.getCities();
 		} catch (IOException e) {

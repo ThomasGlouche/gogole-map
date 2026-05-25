@@ -2,7 +2,7 @@ services:
   bdd:
     container_name: gogole-map-bdd
     build: ./bdd
-    restart: always #added
+    restart: always
     networks:
       - back
     healthcheck:
@@ -14,11 +14,15 @@ services:
   back:
     container_name: gogole-map-back
     build: ./server
-    restart: always #added
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    restart: always
     networks:
       - front
       - back
-    ports:  # use ports instead of expose to map ports
+    ports:
      - "8080:8080"
     depends_on:
       bdd:
