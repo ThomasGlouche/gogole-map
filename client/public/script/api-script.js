@@ -4,7 +4,7 @@
 var regionFilter = document.getElementById('region'); // Menu déroulant des régions
 if (regionFilter) {
     // Initialise le menu déroulant des régions
-    fetch('http://localhost:3000/api/regions')
+    fetch('/api/regions')
         .then(response => response.json())
         .then(data => {
             var regions = data;
@@ -31,7 +31,7 @@ document.getElementById('nearestForm').addEventListener('submit', function (even
     var formData = new FormData(event.target); // Récupère les données du formulaire
 
     // Construit l'URL de la requête
-    var url = 'http://localhost:3000/api/nearest?latitude=' + formData.get('latitude') +
+    var url = '/api/nearest?latitude=' + formData.get('latitude') +
         '&longitude=' + formData.get('longitude') +
         '&nb=' + formData.get('nb') +
         '&radius=' + formData.get('radius') +
@@ -60,7 +60,7 @@ document.getElementById('regionsForm').addEventListener('submit', function (even
     }
     var formData = new FormData(event.target); // Récupère les données du formulaire
 
-    var url = 'http://localhost:3000/api/regions'; // Construit l'URL de la requête
+    var url = '/api/regions'; // Construit l'URL de la requête
 
     // Exécute la requête
     fetch(url)
